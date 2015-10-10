@@ -27,7 +27,7 @@
         <Button style="@style/OrangeButton"
 
             android:layout_height="wrap_content"
-            android:text="Spotify Streamer"
+            android:text="Popular Movies"
             android:id="@+id/btnspotifystreamer"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"

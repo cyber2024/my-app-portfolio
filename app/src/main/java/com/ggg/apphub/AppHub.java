@@ -1,5 +1,8 @@
 package com.ggg.apphub;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -40,7 +43,9 @@ public class AppHub extends ActionBarActivity {
     public void onClick(View v){
         switch(v.getId()){
             case R.id.btnspotifystreamer:
-                Toast.makeText(getApplicationContext(), "Launching Music Streamer", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Launching Popular Movies", Toast
+                        .LENGTH_SHORT).show();
+                openApp(this,"moviestreamer.ggg.com.moviestreamer");
                 break;
             case R.id.btnscores:
                 Toast.makeText(getApplicationContext(), "Launching Scores", Toast.LENGTH_SHORT).show();
@@ -57,6 +62,22 @@ public class AppHub extends ActionBarActivity {
             case R.id.btnmyownapp:
                 Toast.makeText(getApplicationContext(), "Launching Capstone", Toast.LENGTH_SHORT).show();
                 break;
+        }
+    }
+
+    public static boolean openApp(Context context, String packageName){
+        PackageManager manager = context.getPackageManager();
+        try{
+            Intent i = manager.getLaunchIntentForPackage(packageName);
+            if( i == null){
+                //bail
+                throw new PackageManager.NameNotFoundException();
+            }
+            context.startActivity(i);
+            return true;
+        } catch (PackageManager.NameNotFoundException e){
+            e.printStackTrace();
+            return false;
         }
     }
 }
